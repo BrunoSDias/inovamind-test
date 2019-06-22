@@ -1,0 +1,43 @@
+require 'test_helper'
+
+class QuotesControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @quote = quotes(:one)
+  end
+
+  test "should get index" do
+    get "/quotes", as: :json
+    assert_response :success
+  end
+
+  test "should get value by tag name" do
+    get "/quotes/Albert Einstein", as: :json
+    assert_response :success
+  end
+
+  # test "should create quote" do
+  #   assert_difference('Quote.count') do
+  #     post quotes_url, params: { quote: { author: @quote.author, author_about: @quote.author_about, quote: @quote.quote, tags: @quote.tags } }, as: :json
+  #   end
+
+  #   assert_response 201
+  # end
+
+  # test "should show quote" do
+  #   get quote_url(@quote), as: :json
+  #   assert_response :success
+  # end
+
+  # test "should update quote" do
+  #   patch quote_url(@quote), params: { quote: { author: @quote.author, author_about: @quote.author_about, quote: @quote.quote, tags: @quote.tags } }, as: :json
+  #   assert_response 200
+  # end
+
+  # test "should destroy quote" do
+  #   assert_difference('Quote.count', -1) do
+  #     delete quote_url(@quote), as: :json
+  #   end
+
+  #   assert_response 204
+  # end
+end
