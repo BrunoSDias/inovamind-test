@@ -1,7 +1,7 @@
 class QuotesController < ApplicationController
   before_action :enableCache, only: [:find_by_tag]
   before_action :clear_quotes, only: [:load]
-  before_action :authorize_request, only: [:find_by_tag]
+  before_action :authorize_request
 
   def load
     url = "http://quotes.toscrape.com"
