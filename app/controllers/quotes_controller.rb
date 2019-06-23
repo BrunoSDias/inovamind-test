@@ -3,7 +3,7 @@ class QuotesController < ApplicationController
   before_action :clear_quotes, only: [:load]
   before_action :authorize_request, only: [:index, :find_by_tag]
 
-  def load_quotes
+  def load
     url = "http://quotes.toscrape.com"
     page = Crawler.get(url)
     quotes_list = Crawler.get_list(page,'div.quote')
