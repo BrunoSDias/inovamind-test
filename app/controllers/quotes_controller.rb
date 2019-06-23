@@ -1,7 +1,7 @@
 class QuotesController < ApplicationController
   before_action :enable_cache, only: [:find_by_tag]
   before_action :clear_quotes, only: [:load]
-  before_action :authorize_request
+  before_action :authorize_request, only: [:index, :find_by_tag]
 
   def load_quotes
     url = "http://quotes.toscrape.com"
@@ -20,11 +20,6 @@ class QuotesController < ApplicationController
   def find_by_tag
     @quotes = mongo_cache(Quote.where(tags: params[:tag_name]))
     render_json(@quotes)
-  end
-
-  def create
-    @quote = Quote.new(quote_params)
-    @quote.save
   end
 
   private
@@ -61,9 +56,9 @@ class QuotesController < ApplicationController
 
     def render_json(result)
       if result == []
-        render json: result, status: :no_content
+        render json: result.to_json, status: :no_content
       else
-        render json: result
+        render json: result.to_json
       end
     end
 end

@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::API  
     def authorize_request
       header = request.headers['Authorization']
       begin
